@@ -1,14 +1,35 @@
-var VideoPlayer = () => (
-  <div className="video-player">
-    <div className="embed-responsive embed-responsive-16by9">
-      <iframe className="embed-responsive-item" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" allowFullScreen></iframe>
+var VideoPlayer = (props) => {
+  const video = props.videoplayer[0];
+  console.log(video);
+
+  return (
+    <div className="video-player">
+      <div className="embed-responsive embed-responsive-16by9">
+        <iframe className="embed-responsive-item" src={"https://www.youtube.com/embed/" + props.videoplayer[0].id.videoId} allowFullScreen></iframe>
+      </div>
+      <div className="video-player-details">
+        <h3>{props.videoplayer[0].snippet.title}</h3>
+        <div>{props.videoplayer[0].snippet.description}</div>
+      </div>
     </div>
-    <div className="video-player-details">
-      <h3>Video Title</h3>
-      <div>Video Description</div>
-    </div>
-  </div>
-);
+  );
+};
+
+
+// var VideoPlayer = (props) => (
+//   <div className="video-player">
+//     {props.videoplayer.map(video =>
+//       <VideoListEntry video={video} />
+//     )}
+//     <div className="embed-responsive embed-responsive-16by9">
+//       <iframe className="embed-responsive-item" src={"https://www.youtube.com/embed/" + props.id.videoId} allowFullScreen></iframe>
+// //     </div>
+// //     <div className="video-player-details">
+//       <h3>{props.videoname.snippet.title}</h3>
+//       <div>{props.videoname.snippet.description}</div>
+// //     </div>
+// //   </div>
+// // );
 
 // PropTypes tell other developers what `props` a component expects
 // Warnings will be shown in the console when the defined rules are violated

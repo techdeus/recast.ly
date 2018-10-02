@@ -1,8 +1,7 @@
 import VideoListEntry from './VideoListEntry.js';
-// console.log(exampleVideoData);
+import exampleVideoData from '../data/exampleVideoData.js';
 
 var VideoList = (props) => (
-
   <div className="video-list">
     {props.videos.map(video =>
       <VideoListEntry video={video} />
