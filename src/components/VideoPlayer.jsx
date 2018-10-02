@@ -1,6 +1,5 @@
 var VideoPlayer = (props) => {
   const video = props.videoplayer[0];
-  console.log(video);
 
   return (
     <div className="video-player">
