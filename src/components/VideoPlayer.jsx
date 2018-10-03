@@ -1,16 +1,25 @@
 
-var VideoPlayer = (props) => (
+var VideoPlayer = (props) => {
+  if (props.video.id === undefined) {
+    return (
+      <div className="video-list">
+        No videos available
+      </div>
+    );
+  }
 
-  <div className="video-player">
-    <div className="embed-responsive embed-responsive-16by9">
-      <iframe className="embed-responsive-item" src={"https://www.youtube.com/embed/" + props.video.id.videoId} allowFullScreen></iframe>
+  return (
+    <div className="video-player">
+      <div className="embed-responsive embed-responsive-16by9">
+        <iframe className="embed-responsive-item" src={"https://www.youtube.com/embed/" + props.video.id.videoId} allowFullScreen></iframe>
+      </div>
+      <div className="video-player-details">
+        <h3>{props.video.snippet.title}</h3>
+        <div>{props.video.snippet.description}</div>
+      </div>
     </div>
-    <div className="video-player-details">
-      <h3>{props.video.snippet.title}</h3>
-      <div>{props.video.snippet.description}</div>
-    </div>
-  </div>
-);
+  );
+};
 
 
 // var VideoPlayer = (props) => (

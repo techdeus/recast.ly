@@ -2,20 +2,41 @@ import VideoList from './VideoList.js';
 import exampleVideoData from '../data/exampleVideoData.js';
 import VideoPlayer from './VideoPlayer.js';
 import Search from './Search.js';
+import searchYouTube from '../lib/searchYouTube.js';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      videos: exampleVideoData,
-      currentVideo: exampleVideoData[0]
+      videos: [],
+      currentVideo: {}
     };
     
   }
+  
 
-  switchVideo(video) {
-    console.log('click');      
+  
+  componentDidMount() {
+    this.getYouTubeVideos('Funny videos');
+  }
+  
+  getYouTubeVideos(query) {
+    var options = {
+      key: this.props.API_KEY,
+      query: query
+    };
     
+    this.props.searchYouTube(options, (videos) =>
+      
+      this.setState({
+        videos: videos,
+        currentVideo: videos[0]
+      })
+      
+    );
+  }
+  
+  switchVideo(video) {     
     this.setState({currentVideo: video});
   }
   
@@ -24,7 +45,9 @@ class App extends React.Component {
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <div><h5><em>search</em> view goes here</h5></div>
+            <div>
+              <Search searchInput={this.getYouTubeVideos.bind(this)}/>
+            </div>
           </div>
         </nav>
         <div className="row">

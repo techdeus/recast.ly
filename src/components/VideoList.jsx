@@ -1,12 +1,21 @@
 import VideoListEntry from './VideoListEntry.js';
 
-var VideoList = (props) => (
-  <div className="video-list">
-    {props.videos.map(video =>
-      <VideoListEntry video={video} switchVideo={props.switchVideo}/>
-    )}
-  </div>
-);
+var VideoList = (props) => {
+  if (props.videos[0] === undefined) {
+    return (
+      <div className="video-list">
+        No videos available
+      </div>
+    );
+  }
+  return (    
+    <div className="video-list">
+      {props.videos.map(video =>
+        <VideoListEntry video={video} switchVideo={props.switchVideo}/>
+      )}
+    </div>
+  );
+};
 
 
 // PropTypes tell other developers what `props` a component expects
